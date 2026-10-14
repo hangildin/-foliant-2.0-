@@ -46,6 +46,8 @@ form.addEventListener("submit", (event) => {
 
   const data = new FormData(form);
   const projectType = data.get("projectType") || "Не указано";
+  const company = (data.get("company") || "").trim() || "Не указано";
+  const contact = (data.get("contact") || "").trim() || "Не указано";
   const run = data.get("run") || "Не указано";
   const deadline = data.get("deadline") || "Не указано";
   const task = (data.get("task") || "").trim() || "Не описана";
@@ -53,14 +55,14 @@ form.addEventListener("submit", (event) => {
   const text =
 `ЗАЯВКА В «ФОЛИАНТ»
 
+Организация / имя: ${company}
+Контакт: ${contact}
 Задача: ${projectType}
 Тираж: ${run}
 Срок: ${deadline}
 
 Описание:
-${task}
-
-Контакт: ____________________`;
+${task}`;
 
   resultText.textContent = text;
   result.hidden = false;
