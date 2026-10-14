@@ -3,38 +3,42 @@ const form = document.getElementById("briefForm");
 const result = document.getElementById("briefResult");
 const resultText = document.getElementById("briefText");
 const copyButton = document.getElementById("copyBrief");
+const closeButton = document.getElementById("closeBrief");
+
+const presetProjectType = (path) => {
+  const map = {
+    full: "Книга под ключ",
+    print: "Печать готового макета",
+    tender: "Коммерческое предложение"
+  };
+
+  const value = map[path];
+  if (!value) return;
+
+  const input = form.querySelector(`input[value="${value}"]`);
+  if (input) input.checked = true;
+};
 
 document.querySelectorAll(".js-open-brief").forEach((button) => {
   button.addEventListener("click", () => {
-    const path = button.dataset.path;
-
-    if (path === "print") {
-      const input = form.querySelector('input[value="Печать готового макета"]');
-      if (input) input.checked = true;
-    } else if (path === "full") {
-      const input = form.querySelector('input[value="Книга под ключ"]');
-      if (input) input.checked = true;
-    }
-
+    presetProjectType(button.dataset.path);
     result.hidden = true;
-    modal.showModal();
-    document.body.classList.add("modal-open");
+
+    if (typeof modal.showModal === "function") {
+      modal.showModal();
+      document.body.classList.add("modal-open");
+    }
   });
 });
+
+closeButton.addEventListener("click", () => modal.close());
 
 modal.addEventListener("close", () => {
   document.body.classList.remove("modal-open");
 });
 
 modal.addEventListener("click", (event) => {
-  const bounds = modal.getBoundingClientRect();
-  const clickedOutside =
-    event.clientX < bounds.left ||
-    event.clientX > bounds.right ||
-    event.clientY < bounds.top ||
-    event.clientY > bounds.bottom;
-
-  if (clickedOutside) modal.close();
+  if (event.target === modal) modal.close();
 });
 
 form.addEventListener("submit", (event) => {
@@ -78,16 +82,20 @@ copyButton.addEventListener("click", async () => {
   }
 });
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12 }
-);
+if ("IntersectionObserver" in window) {
+  document.documentElement.classList.add("motion-ready");
 
-document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -4% 0px" }
+  );
+
+  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+}
