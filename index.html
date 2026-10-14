@@ -37,22 +37,25 @@
   <main id="top">
     <section class="hero section">
       <div class="hero-copy reveal">
-        <p class="eyebrow">Казань • полный цикл работы с книгой</p>
+        <p class="eyebrow">Книги под ключ • печать тиражей • Казань</p>
         <h1>Создаём книги,<br><em>которые хочется оставить.</em></h1>
         <p class="hero-lead">
-          От идеи, интервью и дизайна до готового тиража.
-          Или профессионально напечатаем уже готовый макет.
+          Создаём книгу с нуля или берём в производство уже готовый проект:
+          от концепции, интервью и дизайна до печати и готового тиража.
         </p>
 
         <div class="hero-actions">
           <button class="button button-accent js-open-brief" data-path="full">Создать книгу под ключ</button>
           <button class="button button-ghost js-open-brief" data-path="print">Рассчитать печать</button>
         </div>
+        <button class="procurement-link js-open-brief" data-path="tender">
+          Для закупок и тендеров <span>→ Получить коммерческое предложение</span>
+        </button>
 
         <div class="hero-proof" aria-label="Ключевые преимущества">
           <div><strong>25+</strong><span>лет в полиграфии</span></div>
           <div><strong>1 команда</strong><span>от идеи до тиража</span></div>
-          <div><strong>Казань</strong><span>работаем по России</span></div>
+          <div><strong>Казань</strong><span>издательство и производство</span></div>
         </div>
       </div>
 
@@ -144,7 +147,7 @@
           <p class="eyebrow">Что мы умеем создавать</p>
           <h2>Проекты, где важны<br>содержание и форма</h2>
         </div>
-        <p class="section-note">Здесь будут реальные кейсы «Фолианта»: задача, процесс, фотографии книги и результат. В прототипе показываем логику подачи.</p>
+        <p class="section-note">В следующей итерации здесь появятся реальные книги «Фолианта»: задача клиента, что сделала команда, фотографии издания и результат.</p>
       </div>
 
       <div class="works-grid">
@@ -276,13 +279,13 @@
   </footer>
 
   <dialog class="brief-modal" id="briefModal">
-    <form method="dialog" class="brief-shell" id="briefForm">
+    <form class="brief-shell" id="briefForm">
       <div class="brief-top">
         <div>
           <p class="eyebrow">Короткий бриф</p>
           <h2>Что нужно сделать?</h2>
         </div>
-        <button class="modal-close" value="cancel" aria-label="Закрыть">×</button>
+        <button class="modal-close" type="button" id="closeBrief" aria-label="Закрыть">×</button>
       </div>
 
       <div class="brief-type">
