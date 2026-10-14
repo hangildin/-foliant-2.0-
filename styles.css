@@ -509,3 +509,79 @@ textarea:focus-visible{
   }
   .motion-ready .reveal{opacity:1;transform:none}
 }
+
+
+/* v1.2: proof of real Foliant capabilities */
+.capabilities-wrap{padding-top:74px;padding-bottom:70px}
+.capabilities-head{
+  display:grid;
+  grid-template-columns:.65fr 1.35fr;
+  gap:48px;
+  align-items:start;
+  margin-bottom:38px;
+}
+.capabilities-head h2{
+  font-family:"Prata",serif;
+  font-weight:400;
+  font-size:clamp(36px,4vw,62px);
+  line-height:1.06;
+  margin:0;
+}
+.capabilities-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+.capability{
+  min-height:210px;
+  padding:26px 26px 30px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+}
+.capability>span{
+  font-size:9px;
+  color:var(--red);
+  letter-spacing:.14em;
+  margin-bottom:auto;
+}
+.capability strong{
+  font-family:"Prata",serif;
+  font-size:24px;
+  font-weight:400;
+  margin-top:34px;
+}
+.capability p{
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
+}
+
+.brief-fields input,
+.brief-fields select,
+.brief-fields textarea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.45);
+  padding:14px;
+  color:var(--ink);
+  outline:none;
+}
+.brief-fields input:focus,
+.brief-fields select:focus,
+.brief-fields textarea:focus{border-color:var(--ink)}
+
+@media (max-width:1000px){
+  .capabilities-head{grid-template-columns:1fr}
+  .capabilities-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:680px){
+  .capabilities-wrap{padding-top:54px;padding-bottom:54px}
+  .capabilities-grid{grid-template-columns:1fr}
+  .capability{min-height:170px}
+}
